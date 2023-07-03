@@ -19,7 +19,8 @@ Before Use:
 How to Use:
 1. Crate an instance if the "MPU6050" class like this: MPU6050 sensor
 2. Call sensor.begin() in the setup() function
-3. Call sensor.getMeasurement() and store the Results in a IMUPackage like this:  IMUPackage imuData = imu.getMeasurement();
+3. Call sensor.getMeasurement() and store the Results in a IMUPackage like this:  IMUPackage imuData = sensor.getMeasurement();
 4. Acces specific values of the Package "imuData" like this: imuData.temperatue;
+5. Change the measurement mode by setting sensor.gyro to 1/0 like this: sensor.gyro = 1; //0
    
 Please direct issues or Questions to erow.wue@gmail.com
