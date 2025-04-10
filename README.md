@@ -1,4 +1,5 @@
-MPU6050 Arduino Library
+#MPU6050 Arduino Library
+
 This is an Arduino library for the MPU6050 sensor.
 
 Usage
