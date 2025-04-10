@@ -1,26 +1,60 @@
-# MPU6050
-This is an Arduino libary for the MPU6050 Sensor
+MPU6050 Arduino Library
+This is an Arduino library for the MPU6050 sensor.
 
-You can utilize this libary in two ways:
-1. Install it just like a nowmal Arduino libary (not recommended)
-2. Drag the MPU6050.h and the MPU6050.cpp file into your project folder (recommended -> configuration is way easyer this way, since there is no runtime configurtation to avoid runtime errors)
+Usage
+You can use this library in two ways:
 
-This libary has two measuremetn modes:
-1. Measuring rotation along the X, Y, Z accxis using the Accelerometer 
-    -> The intended use case are static Applications that don't expirence a lot af acceleration. Using this measurement mode on for example a             quadrocopter isn't going to work
+(Not recommended) Install it like a standard Arduino library.
 
-2. Measuring using the Gyroscope. Prone to drift over longer times. Works in acccelrated envoirments like Boats, Planes, Drones ...
+(Recommended) Copy MPU6050.h and MPU6050.cpp directly into your project folder.
+→ This makes configuration easier, as there's no runtime configuration (avoiding potential runtime errors).
 
-Before Use:
-1. Select the measurement mode by setting bool gyro = 0 (in MPU6050.h) to 1/0 
-2. Run the included "Drift_MPU6050.ino" script to measure your sensors gyro drift and copy paste the results into MPU6050.h
-3. Configure the libary to your needs by choosing the Accelerometer and Gyroscope Full Scale Range
+Measurement Modes
+This library supports two measurement modes:
 
-How to Use:
-1. Crate an instance if the "MPU6050" class like this: MPU6050 sensor
-2. Call sensor.begin() in the setup() function
-3. Call sensor.getMeasurement() and store the Results in a IMUPackage like this:  IMUPackage imuData = sensor.getMeasurement();
-4. Acces specific values of the Package "imuData" like this: imuData.temperatue;
-5. Change the measurement mode by setting sensor.gyro to 1/0 like this: sensor.gyro = 1; //0
-   
-Please direct issues or Questions to erow.wue@gmail.com
+Accelerometer-based orientation (rotation along the X, Y, Z axes):
+Best suited for static applications that don’t experience much acceleration.
+⚠️ Not suitable for dynamic applications like quadcopters, as external forces affect readings.
+
+Gyroscope-based orientation:
+Works well in moving or accelerated environments such as drones, planes, or boats.
+⚠️ Prone to drift over time, so periodic calibration may be necessary.
+
+Setup Instructions
+Before using the library:
+
+Select the measurement mode by setting bool gyro = 0 in MPU6050.h to either 1 (gyro) or 0 (accelerometer).
+
+Run the included Drift_MPU6050.ino script to measure your sensor’s gyro drift.
+Copy the resulting values into MPU6050.h.
+
+Configure the accelerometer and gyroscope full-scale range according to your needs.
+
+How to Use
+Create an instance of the class like this:
+
+cpp
+Copy
+Edit
+MPU6050 sensor;
+Call sensor.begin() inside your setup() function.
+
+Get sensor data:
+
+cpp
+Copy
+Edit
+IMUPackage imuData = sensor.getMeasurement();
+Access individual values, e.g.:
+
+cpp
+Copy
+Edit
+imuData.temperature;
+Change measurement mode at runtime (optional):
+
+cpp
+Copy
+Edit
+sensor.gyro = 1; // or 0
+For questions or issues, please contact: erow.wue@gmail.com
